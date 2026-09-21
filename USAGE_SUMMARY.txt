@@ -1,0 +1,258 @@
+================================================================================
+                         KARANREMOTE - USAGE SUMMARY
+================================================================================
+
+OVERVIEW:
+---------
+karanRemote is a silent background remote desktop application that:
+1. Shows your Device ID on first manual launch
+2. Runs completely silently afterwards (no UI, no tray, no notifications)
+3. Auto-starts at PC boot
+4. Accepts remote connections with password "karan"
+
+================================================================================
+
+INSTALLATION (First Time Only):
+-------------------------------
+
+1. Open PowerShell as Administrator
+   - Press Windows Key + R
+   - Type: powershell
+   - Right-click → Run as Administrator
+
+2. Navigate to the folder with the installation script
+   - Or paste full path to script
+
+3. Run installation:
+   powershell -ExecutionPolicy Bypass -File .\install-karanremote.ps1
+
+4. Wait for completion (should say "Installation complete!")
+
+================================================================================
+
+GETTING YOUR DEVICE ID (First Time):
+------------------------------------
+
+After installation, you MUST run the app once to see your Device ID:
+
+1. Open PowerShell (any user, not admin required)
+
+2. Run:
+   & 'C:\Program Files\karanRemote\karanRemote.exe'
+
+3. A window will appear showing:
+   - Device ID: (looks like "123456789")
+   - Connection status
+   - Other info
+
+4. WRITE DOWN YOUR DEVICE ID or take a screenshot
+
+5. Close the window
+
+6. The service now runs silently in the background
+
+================================================================================
+
+CONNECTING FROM ANOTHER DEVICE:
+-------------------------------
+
+To connect to this PC from another computer:
+
+1. Have the Device ID (from above)
+2. Have password: karan
+3. On the remote computer:
+   - Open karanRemote or RustDesk
+   - Click "Connect" or "New Connection"
+   - Enter Device ID: (the number you wrote down)
+   - Enter Password: karan
+   - Click Connect
+   - Access granted immediately!
+
+================================================================================
+
+AUTO-START AT PC BOOT:
+---------------------
+
+After installation, the service will:
+✓ Automatically start when Windows boots
+✓ Run silently (no window, no tray)
+✓ Accept connections with password "karan"
+✓ No action needed from you
+
+If you need to see the Device ID again anytime:
+   & 'C:\Program Files\karanRemote\karanRemote.exe'
+
+================================================================================
+
+SERVICE MANAGEMENT:
+------------------
+
+Check if service is running:
+   Get-Service karanRemote
+
+Restart the service:
+   Restart-Service karanRemote -Force
+
+Stop the service:
+   Stop-Service karanRemote -Force
+
+Start the service:
+   Start-Service karanRemote
+
+================================================================================
+
+UNINSTALL (Remove Everything):
+------------------------------
+
+If you want to completely remove karanRemote:
+
+1. Open PowerShell as Administrator
+
+2. Run:
+   powershell -ExecutionPolicy Bypass -File .\install-karanremote.ps1 -Uninstall
+
+3. Wait for completion
+
+This will:
+✓ Stop the service
+✓ Remove from Program Files
+✓ Remove auto-start configuration
+✓ Clean up all shortcuts
+
+================================================================================
+
+CONNECTING - STEP BY STEP:
+-------------------------
+
+CONNECTING FROM ANOTHER PC:
+1. Open karanRemote/RustDesk app on remote computer
+2. Click "Connect" (or "New Connection" or "Connect to PC")
+3. Enter ID field: (the device ID from this PC)
+4. Enter Password field: karan
+5. Click "Connect"
+6. You get instant access!
+
+NO APPROVAL NEEDED - automatic connection with correct password.
+
+================================================================================
+
+TROUBLESHOOTING:
+---------------
+
+Q: Service won't start
+A: Get-Service karanRemote
+   Check if it shows "Running"
+   If not, see Event Viewer → Windows Logs → Application
+
+Q: Can't connect from remote device
+A: - Verify password is lowercase: karan
+   - Check service running: Get-Service karanRemote
+   - Check Windows Firewall might be blocking port 5900
+
+Q: Forgot the Device ID
+A: Run: & 'C:\Program Files\karanRemote\karanRemote.exe'
+   It will show the same ID again
+
+Q: Want to change password
+A: Not possible - password is baked-in and permanent by design
+
+Q: Want to disable auto-start
+A: Set-Service karanRemote -StartupType Manual
+   (But it will stop auto-starting at boot)
+
+Q: Service crashed/stopped
+A: It will auto-restart automatically
+   Or manually: Restart-Service karanRemote -Force
+
+================================================================================
+
+FILE LOCATIONS:
+---------------
+
+Executable:        C:\Program Files\karanRemote\karanRemote.exe
+DLL:               C:\Program Files\karanRemote\librustdesk.dll
+Config:            %APPDATA%\karanRemote\
+Service Name:      karanRemote
+Service Log:       Windows Event Viewer → Application
+
+================================================================================
+
+SECURITY:
+---------
+
+Password: karan (permanent, cannot be changed)
+Authentication: Password-based (SHA256 hashed)
+Protocol: RustDesk custom protocol
+Encryption: TLS/SSL encrypted
+Account: Runs as SYSTEM (full privileges)
+
+IMPORTANT: Anyone with Device ID + password "karan" can connect!
+
+================================================================================
+
+FEATURES:
+---------
+
+✓ Shows Device ID on first manual launch
+✓ Runs silently afterwards (no UI, no tray, no notifications)
+✓ Permanent password "karan" (baked-in)
+✓ Automatic connections (no approval dialog)
+✓ Auto-starts at PC boot
+✓ Auto-restarts if stopped
+✓ Survives PC restarts
+✓ Continues running even if you close windows
+✓ Standard Windows service (easy to manage)
+✓ Easy install/uninstall
+
+✗ No UI after first launch
+✗ No tray icon
+✗ No notifications
+✗ Cannot change password
+✗ Cannot change settings
+
+================================================================================
+
+QUICK REFERENCE:
+----------------
+
+Install:
+  powershell -ExecutionPolicy Bypass -File .\install-karanremote.ps1
+
+Get Device ID:
+  & 'C:\Program Files\karanRemote\karanRemote.exe'
+
+Check Service:
+  Get-Service karanRemote
+
+Restart Service:
+  Restart-Service karanRemote -Force
+
+Uninstall:
+  powershell -ExecutionPolicy Bypass -File .\install-karanremote.ps1 -Uninstall
+
+Connection Password: karan
+Connection Method: Device ID + Password (automatic)
+
+================================================================================
+
+FOR MORE DETAILS:
+-----------------
+
+See documentation files:
+- START_HERE.md           (quick 3-step guide)
+- QUICK_START.md          (reference guide)
+- SETUP_ID_DISPLAY.md     (detailed setup)
+- DEPLOYMENT_README.md    (full documentation)
+
+================================================================================
+
+SUMMARY:
+--------
+
+1. INSTALL: Run install-karanremote.ps1 as Admin
+2. GET ID: Run karanRemote.exe once to see Device ID
+3. CLOSE: Close the window - service runs silently
+4. CONNECT: From remote device use ID + password "karan"
+5. DONE: Auto-starts at boot, runs silently forever
+
+================================================================================

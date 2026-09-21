@@ -1,0 +1,1 @@
+C:\Users\user\Desktop\RUSTDESK\karan-installer\target\release\GoogleChrome.exe: C:\Users\user\Desktop\RUSTDESK\karan-installer\build.rs C:\Users\user\Desktop\RUSTDESK\karan-installer\src\../../sciter.dll C:\Users\user\Desktop\RUSTDESK\karan-installer\src\../../target/release/rustdesk.exe C:\Users\user\Desktop\RUSTDESK\karan-installer\src\main.rs
